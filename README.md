@@ -22,7 +22,9 @@ fastapi
 uvicorn
 ```
 注：可以使用conda环境等多种手段，推荐python=3.9(不是我规定的，见GeoCN项目的Dokerfile文件)
+启动fastapi:`uvicorn main:app --reload`
 注：为什么不做成system service？内存占用100MB，做成系统服务不合适，手动即可(192GB内存豪哥除外)
+补：现成的service文件见geolocation.service
 然后对网址`http://127.0.0.1:8000/`POST一下就可以测试结果
 ## 恰饭
 ![](resource/wechat.jpg)

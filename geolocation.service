@@ -1,0 +1,29 @@
+[Unit]
+Description=GeoClue Location Provider Service
+After=network.target
+Wants=geoclue.service
+After=geoclue.service
+
+[Service]
+Type=simple
+User=beiming
+WorkingDirectory=/home/beiming/Program/geoclue2_location/
+
+# Conda 环境配置
+Environment="PATH=/home/beiming/miniconda3/envs/GeoCN/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="CONDA_PREFIX=/home/beiming/miniconda3/envs/GeoCN"
+
+# 使用 conda run
+ExecStart=/home/beiming/miniconda3/bin/conda run -n GeoCN --no-capture-output uvicorn main:app --reload
+
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=geoclue-provider
+
+# 确保 Python 可以访问必要的系统服务
+Environment="DBUS_SESSION_BUS_ADDRESS=unix:path=/run/dbus/system_bus_socket"
+
+[Install]
+WantedBy=multi-user.target
