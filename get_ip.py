@@ -55,9 +55,10 @@ def update():
             del line_lists[-1]
         line_lists.append(f"{format_time} => {ipv4_web}")
         with open(ip_file,"w") as ipf:
-            ipf.writelines(line_lists)
+            ipf.write("\n".join(line_lists))
 def get():
     # 返回最后一行
+    last_line=""
     with open(ip_file, "r") as f:
         line_lists=f.readlines()
         for line in line_lists[::-1]:
