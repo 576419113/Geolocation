@@ -40,7 +40,7 @@ def map_ip2loc(ip):
         return 0
 # 构造请求方式
 app = FastAPI()
-@app.post("/")
+@app.post("/location")
 async def read_root():
     # 访问时间控制
     main_cur_time = time.localtime()
